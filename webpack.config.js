@@ -7,7 +7,7 @@ const path = require('path');
 module.exports = function(){
   return {
     output: {
-      publicPath: "/notes/",
+      publicPath: "/notsi/",
     },
     mode: 'development',
     entry: [

@@ -11,6 +11,7 @@
   },
   "author": "",
   "license": "ISC",
+  "homepage": "https://swoq.github.io/notsi",
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
