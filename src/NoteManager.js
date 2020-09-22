@@ -52,13 +52,11 @@ export default class NoteManager{
     onEditTitle(note){
         note.title = this.editFieldEl.querySelector('.edit-field-title').textContent;
         this.onEditNote(note);
-        this.renderNotes();
     }
 
     onEditBody(note){
         note.body = this.editFieldEl.querySelector('.edit-field-body').textContent;
         this.onEditNote(note);
-        this.renderNotes();
     }
 
     addNote(note){

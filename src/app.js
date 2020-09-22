@@ -42,6 +42,11 @@ newNoteBtn.onclick = () => {
     })
 };
 
+const saveNoteBtn = document.getElementById('saveBtn');
+saveNoteBtn.onclick = () => {
+    noteManager.renderNotes();
+};
+
 window.addEventListener('popstate', function (e){
     noteManager.updateState(e.state);
 })

@@ -17,7 +17,7 @@ body {
 
   .new-note-btn {
     width: 200px;
-    display: block;
+    display: inline;
     margin: 0 auto 20px;
     background: #9a5379;
     padding: 10px 32px;
@@ -56,6 +56,29 @@ body {
     border-radius: 8px;
     padding: 10px 16px;
     font-family: 'Nunito', sans-serif;
+
+    .note-save {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      line-height: 24px;
+      text-align: center;
+      transition: all 0.3s;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.2);
+      }
+
+      &:focus {
+        box-shadow: inset 2px 3px 0px rgba(0, 0, 0, 0.8);
+      }
+    }
+
+    .note-save {
+      float: right;
+    }
+
   }
 
   .edit-field-title{
