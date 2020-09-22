@@ -1,0 +1,143 @@
+* {
+  box-sizing: border-box;
+}
+
+[contenteditable] {
+  outline: 0px solid transparent;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #e4e4e4;
+}
+
+#notes-wrapper {
+  padding: 50px;
+
+  .new-note-btn {
+    width: 200px;
+    display: block;
+    margin: 0 auto 20px;
+    background: #9a5379;
+    padding: 10px 32px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: -2px -1px 25px 2px rgba(0, 0, 0, 0.4);
+    font-size: 26px;
+    outline: 0;
+    transition: all 0.3s;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+
+    &:hover {
+      box-shadow: 0 5px 7px rgba(0, 0, 0, 0.1);
+    }
+
+    &:active {
+      position: relative;
+      top: 1px;
+    }
+  }
+}
+
+.note-edit-field{
+  display: flex;
+  flex-direction: column;
+  background: #9a5379;
+  border-radius: 8px;
+
+
+  .edit-field-body,
+  .edit-field-title{
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.2);
+    border-color: #9a5390;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-family: 'Nunito', sans-serif;
+  }
+
+  .edit-field-title{
+    font-size: 34px;
+    font-weight: bold;
+    box-shadow: 8px 12px 25px 2px rgba(0, 0, 0, 0.4);
+  }
+
+  .edit-field-body{
+    font-size: 24px;
+  }
+}
+
+.notes {
+  max-width: fit-content;
+  float: left;
+
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+
+  .note {
+    background-color: #545f60;
+    border-radius: 8px;
+    width: 280px;
+    margin: 0 10px 10px;
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.5s;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+
+    .note-header {
+      padding: 10px 16px 0;
+
+      .note-add,
+      .note-close {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        line-height: 24px;
+        text-align: center;
+        transition: all 0.3s;
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        &:focus {
+          box-shadow: inset 2px 3px 0px rgba(0, 0, 0, 0.8);
+        }
+      }
+
+      .note-close {
+        float: right;
+      }
+    }
+
+    .note-title,
+    .note-body {
+      outline: 0;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .note-title {
+      font-size: 24px;
+      padding: 10px 16px;
+      font-weight: bold;
+    }
+
+    .note-body {
+      font-size: 20px;
+      padding: 10px 16px 16px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    &:hover {
+      box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.3);
+    }
+  }
+}
