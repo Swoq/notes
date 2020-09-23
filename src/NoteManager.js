@@ -41,14 +41,6 @@ export default class NoteManager{
         this.editFieldEl = newEd;
     }
 
-    updateState(state){
-        let editField = new EditField(this.notes[state.id], this);
-        let newEd = editField.getElement();
-
-        this.editFieldEl.replaceWith(newEd);
-        this.editFieldEl = newEd;
-    }
-
     onEditTitle(note){
         note.title = this.editFieldEl.querySelector('.edit-field-title').innerText;
         this.onEditNote(note);

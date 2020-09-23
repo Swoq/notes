@@ -44,11 +44,7 @@ export default class Note{
         const btnClose = this.el.querySelector('.note-close');
 
         this.el.addEventListener('click', () => {
-            let state = {
-                id: this.id
-            }
-
-            history.pushState(state, '', this.id);
+            history.pushState(null, null, ('#' + this.id));
             this.notesManager.onShowNote(this);
         });
 

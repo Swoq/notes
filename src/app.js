@@ -1,5 +1,6 @@
 import "./scss/style.scss"
 import NoteManager from "./NoteManager";
+import IndexView from "./IndexView";
 
 const noteManager = new NoteManager({
     el: document.querySelector('.notes'),
@@ -7,11 +8,13 @@ const noteManager = new NoteManager({
     notes: onStart()
 });
 
-function onStart(){
+new IndexView(noteManager);
+
+function onStart() {
     let notes = [];
     for (let i = '0'; i < 255; i++) {
         let raw = localStorage.getItem(i);
-        if(raw != null)
+        if (raw != null)
             notes.unshift(JSON.parse(raw));
     }
     return notes;
@@ -46,10 +49,6 @@ const saveNoteBtn = document.getElementById('saveBtn');
 saveNoteBtn.onclick = () => {
     noteManager.renderNotes();
 };
-
-window.addEventListener('popstate', function (e){
-    noteManager.updateState(e.state);
-})
 
 function make_json_note({title, body}){
     return {
