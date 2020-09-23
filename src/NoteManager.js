@@ -50,12 +50,12 @@ export default class NoteManager{
     }
 
     onEditTitle(note){
-        note.title = this.editFieldEl.querySelector('.edit-field-title').textContent;
+        note.title = this.editFieldEl.querySelector('.edit-field-title').innerText;
         this.onEditNote(note);
     }
 
     onEditBody(note){
-        note.body = this.editFieldEl.querySelector('.edit-field-body').textContent;
+        note.body = this.editFieldEl.querySelector('.edit-field-body').innerText;
         this.onEditNote(note);
     }
 

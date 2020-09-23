@@ -8,8 +8,10 @@ export default class EditField {
     getElement(){
         const tpl = this.getTemplate();
         const tmpDiv = document.createElement('div');
+
         tmpDiv.innerHTML = tpl.replace('{{title}}', this.note.title)
             .replace('{{body}}', this.note.body);
+
 
         this.el = tmpDiv.children[0];
 
@@ -21,10 +23,10 @@ export default class EditField {
     getTemplate(){
         return `<div class="note-edit-field">
             <div class="edit-field-title" contenteditable="true">
-                {{title}}
+                <p class="field">{{title}}</p>
             </div>
             <div class="edit-field-body" contenteditable="true" >
-                {{body}}
+                <p class="field">{{body}}</p>
             </div>
         </div>`;
     }
