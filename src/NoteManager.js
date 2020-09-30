@@ -33,6 +33,7 @@ export default class NoteManager{
 
     onShowNote(note){
         this.renderNotes();
+        history.pushState(null, null, ('#' + note.id));
 
         let editField = new EditField(note, this);
         let newEd = editField.getElement();
@@ -54,7 +55,9 @@ export default class NoteManager{
     addNote(note){
         const objNote = new Note(note, this);
         this.notes.unshift(objNote);
+
         this.renderNotes();
         this.onNewNote(objNote);
+        this.onShowNote(objNote);
     }
 }

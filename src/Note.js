@@ -1,21 +1,28 @@
 "use strict";
-export default class Note{
-    static global_id = '0';
+export default class Note {
 
-    constructor({title, body}, noteManager) {
-        this.id = Note.global_id++;
-
+    constructor({id, title, body, date}, noteManager) {
+        this.id = id;
         this.title = title;
         this.body = body;
+        this.date = new Date(date);
+
         this.el = null;
         this.notesManager = noteManager;
     }
 
-    getElement(){
+    getElement() {
         const tpl = this.getTemplate();
         const tmpDiv = document.createElement('div');
+
+        const cutTime = (this.date.toLocaleDateString('en-GB') + ' ' + this.date.toLocaleTimeString([], {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
+        }));
+
         tmpDiv.innerHTML = tpl.replace('{{title}}', this.title)
-            .replace('{{body}}', this.body);
+            .replace('{{body}}', this.body).replace('{{date}}', cutTime);
 
         this.el = tmpDiv.children[0];
 
@@ -30,6 +37,9 @@ export default class Note{
                         <span class="note-close">
                             <i class="fas fa-times"></i>
                         </span>
+                        <div class="note-date">
+                        {{date}}
+                        </div>
                     </div>
                     <div class="note-title">
                         {{title}}
@@ -37,6 +47,7 @@ export default class Note{
                     <div class="note-body">
                         {{body}}
                     </div>
+                    
                 </div>`;
     }
 
@@ -44,7 +55,6 @@ export default class Note{
         const btnClose = this.el.querySelector('.note-close');
 
         this.el.addEventListener('click', () => {
-            history.pushState(null, null, ('#' + this.id));
             this.notesManager.onShowNote(this);
         });
 

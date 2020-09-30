@@ -5,20 +5,26 @@ import IndexView from "./IndexView";
 const noteManager = new NoteManager({
     el: document.querySelector('.notes'),
     editFieldEl: document.querySelector('.note-edit-field'),
-    notes: onStart()
+    notes: localStorageLoader().sort(function (a, b) {
+        return new Date(b.date) - new Date(a.date);
+    })
 });
 
 new IndexView(noteManager);
 
-function onStart() {
+
+function localStorageLoader() {
     let notes = [];
-    for (let i = '0'; i < 255; i++) {
-        let raw = localStorage.getItem(i);
-        if (raw != null)
-            notes.unshift(JSON.parse(raw));
+    for (let i = 0; i < localStorage.length; i++) {
+
+        let key = localStorage.key(i);
+        if (key === 'loglevel:webpack-dev-server')
+            continue;
+
+        let raw = localStorage.getItem(key);
+        notes.unshift(JSON.parse(raw));
     }
     return notes;
-
 }
 
 noteManager.onNewNote = (note) => {
@@ -40,8 +46,10 @@ noteManager.onRemoveNote = (note) => {
 const newNoteBtn = document.querySelector('.new-note-btn');
 newNoteBtn.onclick = () => {
     noteManager.addNote({
+        id: `f${(~~(Math.random() * 1e8)).toString(16)}`,
         title: '',
-        body: ''
+        body: '',
+        date: new Date()
     })
 };
 
@@ -50,9 +58,11 @@ saveNoteBtn.onclick = () => {
     noteManager.renderNotes();
 };
 
-function make_json_note({title, body}){
+function make_json_note({id, title, body, date}) {
     return {
+        id,
         title,
-        body
+        body,
+        date
     }
 }
