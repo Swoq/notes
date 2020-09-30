@@ -10,9 +10,6 @@ const noteManager = new NoteManager({
     })
 });
 
-new IndexView(noteManager);
-
-
 function localStorageLoader() {
     let notes = [];
     for (let i = 0; i < localStorage.length; i++) {
@@ -42,22 +39,6 @@ noteManager.onRemoveNote = (note) => {
     console.log("Note removed ", note.id);
 };
 
-
-const newNoteBtn = document.querySelector('.new-note-btn');
-newNoteBtn.onclick = () => {
-    noteManager.addNote({
-        id: `f${(~~(Math.random() * 1e8)).toString(16)}`,
-        title: '',
-        body: '',
-        date: new Date()
-    })
-};
-
-const saveNoteBtn = document.getElementById('saveBtn');
-saveNoteBtn.onclick = () => {
-    noteManager.renderNotes();
-};
-
 function make_json_note({id, title, body, date}) {
     return {
         id,
@@ -66,3 +47,23 @@ function make_json_note({id, title, body, date}) {
         date
     }
 }
+
+(function () {
+    new IndexView(noteManager);
+
+    const newNoteBtn = document.querySelector('.new-note-btn');
+    newNoteBtn.onclick = () => {
+        noteManager.addNote({
+            id: `f${(~~(Math.random() * 1e8)).toString(16)}`,
+            title: '',
+            body: '',
+            date: new Date()
+        })
+    };
+
+    const saveNoteBtn = document.getElementById('saveBtn');
+    saveNoteBtn.onclick = () => {
+        noteManager.renderNotes();
+    };
+
+})();
