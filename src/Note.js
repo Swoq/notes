@@ -47,15 +47,16 @@ export default class Note {
                     <div class="note-body">
                         {{body}}
                     </div>
-                    
                 </div>`;
     }
 
     attachEventListeners(){
         const btnClose = this.el.querySelector('.note-close');
+        const iEl = btnClose.getElementsByTagName('I');
 
-        this.el.addEventListener('click', () => {
-            this.notesManager.onShowNote(this);
+        this.el.addEventListener('click', (e) => {
+            if (e.target !== iEl[0])
+                this.notesManager.onShowNote(this);
         });
 
         btnClose.onclick = () => {

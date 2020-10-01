@@ -6,8 +6,10 @@ export default class NoteManager{
     constructor({el, editFieldEl, notes}) {
         this.el = el;
         this.editFieldEl = editFieldEl;
+        this.defaultField = editFieldEl;
 
         this.notes = notes.map(note => new Note(note, this));
+        this.currentNote = null;
 
         this.onNewNote = () => {};
         this.onEditNote = () => {};
@@ -25,14 +27,20 @@ export default class NoteManager{
         this.el.append(noteEl);
     }
 
-    removeNote(note){
+    removeNote(note) {
         this.notes.splice(this.notes.indexOf(note), 1);
         this.renderNotes();
         this.onRemoveNote(note);
+
+        if (this.currentNote === note) {
+            this.editFieldEl.innerHTML = this.defaultField.innerHTML;
+            this.currentNote = null;
+        }
     }
 
     onShowNote(note){
         this.renderNotes();
+        this.currentNote = note;
         history.pushState(null, null, ('#' + note.id));
 
         let editField = new EditField(note, this);
